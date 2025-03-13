@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building the project...'
-                    sh 'make -C main'
+                    sh 'make -C nonexistent_directory'  // ❌ Intentional error: Directory does not exist
                 }
             }
         }
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running tests...'
-                    sh 'cd /var/jenkins_home/workspace/PES2UG22CS345-1/main/ && ./hello_exec'
+                    sh 'cd /var/jenkins_home/workspace/PES2UG22CS330-1/main/ && ./hello_exec'
                 }
             }
         }
@@ -23,7 +23,7 @@ pipeline {
 
     post {
         failure {
-            echo 'Pipeline failed'
+            echo '❌ Pipeline failed due to an error in one of the stages!'
         }
     }
 }
